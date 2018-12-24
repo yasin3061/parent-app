@@ -6,7 +6,11 @@ import org.company.app.service.persistence.AccountPersistenceGateway;
 import org.company.persistence.model.Account;
 import org.company.persistence.repository.AccountRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AccountPersistenceGatewayConnector implements AccountPersistenceGateway {
 
@@ -33,5 +37,14 @@ public class AccountPersistenceGatewayConnector implements AccountPersistenceGat
         } else {
             throw new AccountNotFoundException("The account with ID " + accountId + " was not found.");
         }
+    }
+
+    @Override
+    public List<AccountDto> findAll() {
+        List<Account> allAccountsFromDb = repository.findAll();
+        List<AccountDto> allAccounts = new ArrayList<>();
+        allAccounts = allAccountsFromDb.stream().map(a -> AccountDto.builder().baseBranch(a.getBaseBranch())
+                .holderName(a.getHolderName()).id(a.getId()).build()).collect(Collectors.toList());
+        return allAccounts;
     }
 }
