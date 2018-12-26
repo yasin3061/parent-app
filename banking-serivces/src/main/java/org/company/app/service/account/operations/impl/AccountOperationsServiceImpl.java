@@ -16,8 +16,8 @@ public class AccountOperationsServiceImpl implements AccountOperationsService{
 
 
     @Override
-    public void openNewAccount(AccountDto account) {
-        persistence.saveAccount(account);
+    public AccountDto openNewAccount(AccountDto account) {
+        return persistence.saveAccount(account);
     }
 
     @Override

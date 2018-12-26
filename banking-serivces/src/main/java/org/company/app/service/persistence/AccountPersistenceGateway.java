@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AccountPersistenceGateway {
 
-    void saveAccount(AccountDto account);
+    AccountDto saveAccount(AccountDto account);
 
     AccountDto findAccountById(Long accountId) throws AccountNotFoundException;
 

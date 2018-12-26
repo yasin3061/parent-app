@@ -21,10 +21,11 @@ public class AccountPersistenceGatewayConnector implements AccountPersistenceGat
     }
 
     @Override
-    public void saveAccount(AccountDto account) {
+    public AccountDto saveAccount(AccountDto account) {
         Account toBeSaved = Account.builder().holderName(account.getHolderName()).baseBranch(account.getBaseBranch())
                 .build();
-        repository.save(toBeSaved);
+        account.setId(repository.save(toBeSaved).getId());
+        return account;
     }
 
     @Override

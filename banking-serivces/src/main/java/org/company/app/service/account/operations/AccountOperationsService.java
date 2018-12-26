@@ -8,9 +8,10 @@ public interface AccountOperationsService {
 
     // look at the method names here. Compare this with the names in persistence layer.
     // here we are all talking business rules.
-    void openNewAccount(AccountDto account);
+    AccountDto openNewAccount(AccountDto account);
     AccountDto getAccountDetails(Long accountId);
 
     List<AccountDto> getAllAccountDetails();
+
 //    Account closeAccount(Long accountId);
 }
